@@ -1,0 +1,10 @@
+{
+    "name": "apollo-gateway",
+    "version": "1.0.0",
+    "main": "index.js",
+    "dependencies": {
+      "@apollo/server": "^4.9.0",
+      "@apollo/gateway": "^2.5.0",
+      "graphql": "^16.8.0"
+    }
+  }

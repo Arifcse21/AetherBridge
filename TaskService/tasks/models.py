@@ -28,6 +28,12 @@ class TaskStatusModel(models.Model):
     )
     start_at = models.DateTimeField()
     end_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Task Status"
+        verbose_name_plural = "Task Statuses"
 
     def __str__(self):
         return f"{self.pk} - {self.task.title} - {self.status}"
