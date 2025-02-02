@@ -173,4 +173,5 @@ cython_debug/
 !**/__init__.py
 
 
-node_modules
+node_modules/
+package-lock.json
