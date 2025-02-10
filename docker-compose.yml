@@ -1,0 +1,45 @@
+services:
+  user_service:
+    build:
+      context: UserService/
+      dockerfile: Dockerfile
+    container_name: user_service
+    image: user_service
+    networks:
+      apollo_net:
+        ipv4_address: 172.110.0.51
+
+  task_service:
+    build:
+      context: TaskService/
+      dockerfile: Dockerfile
+    container_name: task_service
+    image: task_service
+    networks:
+      apollo_net:
+        ipv4_address: 172.110.0.52
+
+  apollo_federation:
+    build:
+      context: Federation/
+      dockerfile: Dockerfile
+    container_name: apollo_federation
+    image: apollo_federation
+    ports:
+      - "4100:4000"
+    depends_on:
+      - user_service
+      - task_service
+    environment:
+      - USER_SERVICE_URL=http://172.110.0.51:8000/graphql/
+      - TASK_SERVICE_URL=http://172.110.0.52:8000/graphql/
+    networks:
+      apollo_net:
+        ipv4_address: 172.110.0.53
+
+networks:
+  apollo_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.110.0.0/24

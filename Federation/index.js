@@ -53,8 +53,8 @@ async function waitForServices() {
   const subgraphs = [
     // { name: 'users', url: process.env.USER_SERVICE_URL },
     // { name: 'tasks', url: process.env.TASK_SERVICE_URL },
-    { name: 'users', url: 'http://127.0.0.1:8000/graphql/' },
-    { name: 'tasks', url: 'http://127.0.0.1:8001/graphql/' },
+    { name: 'users', url: process.env.USER_SERVICE_URL || 'http://127.0.0.1:8000/graphql/' },
+    { name: 'tasks', url: process.env.TASK_SERVICE_URL || 'http://127.0.0.1:8001/graphql/' },
   ];
 
   const availableSubgraphs = [];
